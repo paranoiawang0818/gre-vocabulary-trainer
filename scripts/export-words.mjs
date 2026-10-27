@@ -52,7 +52,7 @@ for (const word of words) {
 }
 
 const payload = {
-  source: source.split("/").pop(),
+  source: "GRE 核心词库",
   generatedAt: new Date().toISOString(),
   listCount: lists.size,
   wordCount: words.length,

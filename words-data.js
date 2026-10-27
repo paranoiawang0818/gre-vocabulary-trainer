@@ -1,5 +1,5 @@
 window.GRE_WORDS = {
-  "source": "Nigel的GRE核心单词总结_副本.xlsx",
+  "source": "GRE 核心词库",
   "generatedAt": "2026-07-02T10:50:11.514Z",
   "listCount": 31,
   "wordCount": 1515,
