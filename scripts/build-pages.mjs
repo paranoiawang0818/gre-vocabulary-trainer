@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,9 +27,13 @@ for (const file of files) {
 }
 await fs.writeFile(path.join(output, ".nojekyll"), "");
 
-const entry = await fs.readFile(path.join(output, "index.html"), "utf8");
-for (const [, reference] of entry.matchAll(/(?:src|href)="([^"#]+)"/g)) {
+let entry = await fs.readFile(path.join(output, "index.html"), "utf8");
+for (const [, reference] of [...entry.matchAll(/(?:src|href)="([^"#]+)"/g)]) {
   if (/^(?:data:|https?:)/.test(reference)) continue;
   assert(files.includes(reference), `Missing published asset: ${reference}`);
+  const bytes = await fs.readFile(path.join(output, reference));
+  const version = createHash("sha256").update(bytes).digest("hex").slice(0, 12);
+  entry = entry.replaceAll(`"${reference}"`, `"${reference}?v=${version}"`);
 }
+await fs.writeFile(path.join(output, "index.html"), entry);
 console.log(`Pages ready: ${files.length + 1} application files; no original tables or local records.`);
