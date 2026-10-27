@@ -51,4 +51,4 @@ node scripts/build-pages.mjs
 - `ambient-audio.js`：本地环境音合成。
 - `assets/ambient/`：四季伴读媒体。
 
-界面架构参考 [WordLink](https://github.com/orionsheep/wordlink)。伴读媒体沿用该项目的 MIT 授权文件，详见 [媒体说明](assets/ambient/NOTICE.md) 与 [许可文本](docs/WordLink-MIT-LICENSE.txt)。
+界面与交互参考 [orionsheep/wordlink](https://github.com/orionsheep/wordlink)，网站页脚也保留参考链接。伴读媒体沿用该项目的 MIT 授权文件，详见 [媒体说明](assets/ambient/NOTICE.md) 与 [许可文本](docs/WordLink-MIT-LICENSE.txt)。
